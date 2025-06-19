@@ -1,7 +1,7 @@
 <odoo>
     <record id="view_estate_property_list" model="ir.ui.view">
-        <field name="name">estate.property.list</field>
-        <field name="model">estate.property</field>
+        <field name="name">estate_property.list</field>
+        <field name="model">estate_property</field>
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
@@ -10,8 +10,8 @@
     </record>
 
     <record id="view_estate_property_form" model="ir.ui.view">
-        <field name="name">estate.property.form</field>
-        <field name="model">estate.property</field>
+        <field name="name">estate_property.form</field>
+        <field name="model">estate_property</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -26,7 +26,7 @@
 
     <record id="action_estate_property" model="ir.actions.act_window">
         <field name="name">Properties</field>
-        <field name="res_model">estate.property</field>
+        <field name="res_model">estate_property</field>
         <field name="view_mode">list,form</field>
     </record>
 
