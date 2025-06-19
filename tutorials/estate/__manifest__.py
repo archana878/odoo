@@ -10,5 +10,6 @@
     'application': True,
     'data': [
         'security/ir.access.model.csv',
+        'views/views.xml',
     ],
 }
