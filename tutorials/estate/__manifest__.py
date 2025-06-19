@@ -8,4 +8,5 @@
     'depends': ['base'],
     'installable': True,
     'application': True,
+    'data': [],
 }
