@@ -10,6 +10,6 @@
     'application': True,
     'data': [
         'security/ir.access.model.csv',
-        'views/views.xml',
+        'views/estate_property_views.xml',
     ],
 }
