@@ -8,5 +8,7 @@
     'depends': ['base'],
     'installable': True,
     'application': True,
-    'data': [],
+    'data': [
+        'security/ir.access.model.csv',
+    ],
 }
