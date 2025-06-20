@@ -46,4 +46,5 @@
 
     <menuitem id="menu_estate_root" name="Real Estate"/>
     <menuitem id="menu_estate_property" name="Properties" parent="menu_estate_root" action="action_estate_property"/>
+    <field name="property_type_id"/>
 </odoo>
