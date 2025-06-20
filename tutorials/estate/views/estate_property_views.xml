@@ -27,7 +27,7 @@
             </form>
         </field>
     </record>
-
+<!-- 
     <record id="view_estate_property_search" model="ir.ui.view">
         <field name="name">estate.property.search</field>
         <field name="model">estate.property</field>
@@ -36,7 +36,7 @@
                 <field name="name" />
             </search>
         </field>
-    </record>
+    </record> -->
 
     <record id="action_estate_property" model="ir.actions.act_window">
         <field name="name">Properties</field>
