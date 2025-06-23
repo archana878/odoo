@@ -1,50 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="view_estate_property_list" model="ir.ui.view">
-        <field name="name">estate.property.list</field>
-        <field name="model">estate.property</field>
-        <field name="arch" type="xml">
-            <list>
-                <field name="name"/>
-                <field name="discription"/>
+  <!-- Property Type Views -->
+  <record id="view_property_type_list" model="ir.ui.view">
+    <field name="name">estate.property.type.list</field>
+    <field name="model">estate.property.type</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_property_type_form" model="ir.ui.view">
+    <field name="name">estate.property.type.form</field>
+    <field name="model">estate.property.type</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <field name="name"/>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_property_type" model="ir.actions.act_window">
+    <field name="name">Property Types</field>
+    <field name="res_model">estate.property.type</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+  <menuitem id="menu_estate_root" name="Estate"/>
+  <menuitem id="menu_property_type" name="Property Types" parent="menu_estate_root" action="action_property_type"/>
+
+  <!-- Property Tag Views -->
+  <record id="view_tag_list" model="ir.ui.view">
+    <field name="name">estate.property.tag.list</field>
+    <field name="model">estate.property.tag</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_tag_form" model="ir.ui.view">
+    <field name="name">estate.property.tag.form</field>
+    <field name="model">estate.property.tag</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <field name="name"/>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_property_tag" model="ir.actions.act_window">
+    <field name="name">Property Tags</field>
+    <field name="res_model">estate.property.tag</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+  <menuitem id="menu_property_tag" name="Property Tags" parent="menu_estate_root" action="action_property_tag"/>
+
+  <!-- Property Offer Views -->
+  <record id="view_offer_list" model="ir.ui.view">
+    <field name="name">estate.property.offer.list</field>
+    <field name="model">estate.property.offer</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="price"/>
+        <field name="property_id"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_offer_form" model="ir.ui.view">
+    <field name="name">estate.property.offer.form</field>
+    <field name="model">estate.property.offer</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="price"/>
+            <field name="property_id"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_property_offer" model="ir.actions.act_window">
+    <field name="name">Property Offers</field>
+    <field name="res_model">estate.property.offer</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+  <menuitem id="menu_property_offer" name="Offers" parent="menu_estate_root" action="action_property_offer"/>
+
+  <!-- Base Form View for Estate Property -->
+  <record id="estate_property_form_view" model="ir.ui.view">
+    <field name="name">estate.property.form</field>
+    <field name="model">estate.property</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="name"/>
+          </group>
+          <notebook/>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- Inherit Property View to Add Relations -->
+  <record id="view_property_form_inherit" model="ir.ui.view">
+    <field name="name">estate.property.form.inherit.relations</field>
+    <field name="model">estate.property</field>
+    <field name="inherit_id" ref="estate_property_form_view"/>
+    <field name="arch" type="xml">
+      <xpath expr="//sheet/notebook" position="inside">
+        <page string="Other Info">
+          <group>
+            <field name="property_type_id"/>
+            <field name="buyer_id"/>
+            <field name="salesperson_id"/>
+            <field name="tag_ids" widget="many2many_tags"/>
+          </group>
+        </page>
+        <page string="Offers">
+          <field name="offer_ids">
+            <list editable="bottom">
+              <field name="price"/>
             </list>
-        </field>
-    </record>
-    <record id="view_estate_property_form" model="ir.ui.view">
-        <field name="name">estate.property.form</field>
-        <field name="model">estate.property</field>
-        <field name="arch" type="xml">
-            <form string="">
-                <sheet>
-                    <group>
-                        <field name="name" />
-                    </group>
-                    <notebook>
-                        <page string="Discription">
-                            <field name="discription" />    
-                        </page>
-                    </notebook>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="view_estate_property_search" model="ir.ui.view">
-        <field name="name">estate.property.search</field>
-        <field name="model">estate.property</field>
-        <field name="arch" type="xml">
-            <search string="">
-                <field name="name" />
-            </search>
-        </field>
-    </record> 
-
-    <record id="action_estate_property" model="ir.actions.act_window">
-        <field name="name">Properties</field>
-        <field name="res_model">estate.property</field>
-        <field name="view_mode">list,form</field>
-    </record>
-
-    <menuitem id="menu_estate_root" name="Real Estate"/>
-    <menuitem id="menu_estate_property" name="Properties" parent="menu_estate_root" action="action_estate_property"/>
-    <field name="property_type_id"/>
+          </field>
+        </page>
+      </xpath>
+    </field>
+  </record>
 </odoo>
