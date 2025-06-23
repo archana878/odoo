@@ -29,9 +29,6 @@
     <field name="view_mode">list,form</field>
   </record>
 
-  <menuitem id="menu_estate_root" name="Estate"/>
-  <menuitem id="menu_property_type" name="Property Types" parent="menu_estate_root" action="action_property_type"/>
-
   <!-- Property Tag Views -->
   <record id="view_tag_list" model="ir.ui.view">
     <field name="name">estate.property.tag.list</field>
@@ -60,8 +57,6 @@
     <field name="res_model">estate.property.tag</field>
     <field name="view_mode">list,form</field>
   </record>
-
-  <menuitem id="menu_property_tag" name="Property Tags" parent="menu_estate_root" action="action_property_tag"/>
 
   <!-- Property Offer Views -->
   <record id="view_offer_list" model="ir.ui.view">
@@ -96,9 +91,20 @@
     <field name="view_mode">list,form</field>
   </record>
 
-  <menuitem id="menu_property_offer" name="Offers" parent="menu_estate_root" action="action_property_offer"/>
+  <!-- Property Main Views -->
+  <record id="view_estate_property_list" model="ir.ui.view">
+    <field name="name">estate.property.list</field>
+    <field name="model">estate.property</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="property_type_id"/>
+        <field name="buyer_id"/>
+        <field name="salesperson_id"/>
+      </list>
+    </field>
+  </record>
 
-  <!-- Base Form View for Estate Property -->
   <record id="estate_property_form_view" model="ir.ui.view">
     <field name="name">estate.property.form</field>
     <field name="model">estate.property</field>
@@ -114,7 +120,6 @@
     </field>
   </record>
 
-  <!-- Inherit Property View to Add Relations -->
   <record id="view_property_form_inherit" model="ir.ui.view">
     <field name="name">estate.property.form.inherit.relations</field>
     <field name="model">estate.property</field>
@@ -139,4 +144,17 @@
       </xpath>
     </field>
   </record>
+
+  <record id="action_estate_property" model="ir.actions.act_window">
+    <field name="name">Properties</field>
+    <field name="res_model">estate.property</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+  <!-- Menus -->
+  <menuitem id="menu_estate_root" name="Estate" sequence="10"/>
+  <menuitem id="menu_estate_property" name="Properties" parent="menu_estate_root" action="action_estate_property"/>
+  <menuitem id="menu_property_type" name="Property Types" parent="menu_estate_root" action="action_property_type"/>
+  <menuitem id="menu_property_tag" name="Property Tags" parent="menu_estate_root" action="action_property_tag"/>
+  <menuitem id="menu_property_offer" name="Offers" parent="menu_estate_root" action="action_property_offer"/>
 </odoo>
